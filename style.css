@@ -1,0 +1,17 @@
+body{
+    margin: 10;
+    padding: 10 10;
+}
+
+.hidden{
+    display: none;
+}
+
+text{
+    font-size: 60px;
+}
+
+rect{
+    width: 150;
+    height: 150;
+}
