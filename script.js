@@ -15,6 +15,13 @@ const result = [
     [6, 7, 8]
 ];
 
+var MOVES = 0;
+
+function updateMoves() {
+    let movesNumber = document.getElementById("movesNumber");
+    movesNumber.innerHTML = MOVES;
+}
+
 function captureTiles() {
     tiles = [];
     tilesText = [];
@@ -199,21 +206,29 @@ function detectKeyPress() {
             case 37:
                 // alert('Left key pressed');
                 determineMove('W');
+                MOVES = MOVES + 1;
+                updateMoves();
                 gameOver();
                 break;
             case 38:
                 // alert('Up key pressed');
                 determineMove('N');
+                MOVES = MOVES + 1;
+                updateMoves();
                 gameOver();
                 break;
             case 39:
                 // alert('Right key pressed');
                 determineMove('E');
+                MOVES = MOVES + 1;
+                updateMoves();
                 gameOver();
                 break;
             case 40:
                 // alert('Down key pressed');
                 determineMove('S');
+                MOVES = MOVES + 1;
+                updateMoves();
                 gameOver();
                 break;
         }
@@ -249,6 +264,8 @@ function detectClicks() {
         tiles[i].addEventListener("click", (event) => {
             const index = parseInt(event.target.id[5]);
             clickMove(index);
+            MOVES = MOVES + 1;
+            updateMoves();
             gameOver();
         });
     }
@@ -256,6 +273,8 @@ function detectClicks() {
         tilesText[i].addEventListener("click", (event) => {
             const index = parseInt(event.target.id[5]);
             clickMove(index);
+            MOVES = MOVES + 1;
+            updateMoves();
             gameOver();
         });
     }
@@ -266,7 +285,7 @@ function stopDetection() {
     document.onkeydown = function () { };
 }
 
-const SCRAMBLE_CNT = 100;
+const SCRAMBLE_CNT = 200;
 
 function scrambleTiles() {
 
@@ -288,17 +307,36 @@ function gameOver() {
     }
     console.log(count);
     if (count >= 8) {
-        alert("CONGRATS!!");
+
+        var endScreen = document.getElementById("endScreen")
+        endScreen.classList.remove('hidden');
+        endScreen.style.zIndex = 2;
         stopDetection();
+        var scramble = document.querySelector('button');
+        scramble.disabled = false;
     }
 }
 
 function gameLoop() {
     scrambleTiles();
+    MOVES = 0;
+    updateMoves();
+    var endScreen = document.getElementById("endScreen")
+    endScreen.classList.add('hidden');
+    var endScreen = document.getElementById("endScreen")
+    endScreen.style.zIndex = -1;
+    var scramble = document.querySelector('button');
+    scramble.disabled = true;
     detectKeyPress();
     detectClicks();
 }
 
+var endScreen = document.getElementById("endScreen")
+endScreen.classList.add('hidden');
+var endScreen = document.getElementById("endScreen")
+endScreen.style.zIndex = -1;
+
 
 var scramble = document.getElementById("scramble-btn");
 scramble.addEventListener('click', gameLoop);
+

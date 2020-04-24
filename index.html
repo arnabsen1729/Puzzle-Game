@@ -6,24 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Puzzle-Game</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <h1>Puzzle Game</h1>
+    <div id="heading">
+        <h1>Puzzle Game</h1>
+    </div>
+    <div id="movesCount">
+        Moves: <span id="movesNumber">0</span>
+    </div>
     <div id="gameScreen">
         <svg width="520" height="520">
             <rect id="tile_0" x="5" y="5" rx="20" ry="20" width="160" height="160"
-                style="fill:red;stroke:black;stroke-width:5;opacity:0.5" />
+                style="fill:red;stroke:black;stroke-width:5;opacity:0.6" />
 
             <text id="text_0" x="65" y="105">1</text>
 
             <rect id="tile_1" x="165" y="5" rx="20" ry="20" width="160" height="160"
-                style="fill:red;stroke:black;stroke-width:5;opacity:0.5" />
+                style="fill:red;stroke:black;stroke-width:5;opacity:0.6" />
 
             <text id="text_1" x="225" y="105">2</text>
 
             <rect id="tile_2" x="325" y="5" rx="20" ry="20" width="160" height="160"
-                style="fill:red;stroke:black;stroke-width:5;opacity:0.5" />
+                style="fill:red;stroke:black;stroke-width:5;opacity:0.6" />
 
             <text id="text_2" x="385" y="105">3</text>
 
@@ -31,17 +37,17 @@
 
 
             <rect id="tile_3" x="5" y="165" rx="20" ry="20" width="160" height="160"
-                style="fill:red;stroke:black;stroke-width:5;opacity:0.5" />
+                style="fill:red;stroke:black;stroke-width:5;opacity:0.6" />
 
             <text id="text_3" x="65" y="265">4</text>
 
             <rect id="tile_4" x="165" y="165" rx="20" ry="20" width="160" height="160"
-                style="fill:red;stroke:black;stroke-width:5;opacity:0.5" />
+                style="fill:red;stroke:black;stroke-width:5;opacity:0.6" />
 
             <text id="text_4" x="225" y="265">5</text>
 
             <rect id="tile_5" x="325" y="165" rx="20" ry="20" width="160" height="160"
-                style="fill:red;stroke:black;stroke-width:5;opacity:0.5" />
+                style="fill:red;stroke:black;stroke-width:5;opacity:0.6" />
 
             <text id="text_5" x="385" y="265">6</text>
 
@@ -49,20 +55,27 @@
 
 
             <rect id="tile_6" x="5" y="325" rx="20" ry="20" width="160" height="160"
-                style="fill:red;stroke:black;stroke-width:5;opacity:0.5" />
+                style="fill:red;stroke:black;stroke-width:5;opacity:0.6" />
 
             <text id="text_6" x="65" y="425">7</text>
 
             <rect id="tile_7" x="165" y="325" rx="20" ry="20" width="160" height="160"
-                style="fill:red;stroke:black;stroke-width:5;opacity:0.5" />
+                style="fill:red;stroke:black;stroke-width:5;opacity:0.6" />
 
             <text id="text_7" x="225" y="425">8</text>
 
             <rect class="hidden" id="tile_8" x="325" y="325" rx="20" ry="20" width="160" height="160"
-                style="fill:red;stroke:black;stroke-width:5;opacity:0.5" />
+                style="fill:red;stroke:black;stroke-width:5;opacity:0.6" />
 
             <text id="text_8" class="hidden" x="385" y="425">8</text>
         </svg>
+    </div>
+    <div id="endScreen">
+        <svg width="495" height="495">
+            <rect x="0" y="0" width="495" rx="20" ry="20" height="495" onclick="" style="fill:black;opacity:0.75" />
+            <text x="90" y="200">CONGRATS</text>
+        </svg>
+        <!-- <div id="resultScreen">You did it in <span id="finalMovesNumber">0</span> moves</div> -->
     </div>
     <div id="scramble-btn"><button>Scramble!</button></div>
     <script type="module" src="script.js"></script>

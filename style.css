@@ -1,10 +1,12 @@
 body{
+    background: url('./bg.jpg');
     margin: 10;
     padding: 10 10;
 }
 
 .hidden{
     display: none;
+    
 }
 
 text{
@@ -17,26 +19,87 @@ rect{
 }
 
 h1{
+    /* height: 70px; */
+    width: 23%;
+    border-radius: 20px;
+    padding: 5px 5px;
+    font-family: 'Noto Serif', serif;
     text-align: center;
+    font-size: 54px;
+    color: #dedede;
+    background-color: rgba(0, 0, 0, 0.85);
+}
 
+#movesCount{
+    position: absolute;
+    top: 40%;
+    left: 20%;
+    padding: 1%;
+    border-radius: 20px;
+    color: #dedede;
+    background-color: rgba(0, 0, 0, 0.85);
+    font-size: 40px;
+}
+
+#heading{
+    display: flex;
+    justify-content: center;
 }
 
 #gameScreen{
+    position: absolute;
     padding-top: 4%;
-    display: flex;
-    justify-content: center; 
-    align-items: center;
+    padding-left: 37%;
     top: 10%;
+    z-index: 1;
 }
 
+#endScreen, #resultScreen{
+    position: absolute;
+    padding-top: 4%;
+    top: 10%;
+    padding-left: 37%;
+    z-index: 2;
+    /* display: none; */
+}
+
+/* #resultScreen{
+    font: 20px;
+    color: #dedede;
+} */
+
+
 #scramble-btn{
+    padding-top: 32%;
     display: flex;
     justify-content: center;
-    color: red;
+    z-index: 9;
 }
 
 button{
-    height: 50px;
-    width: 10%;
+    height: 52px;
+    width: 13%;
     font-size: 2em;
+    border-radius: 20px;
+    text-transform: uppercase;
+    outline: none;
+    border: 4px solid #383838;
+
+}
+
+button:hover:enabled {
+    cursor: pointer;
+    color: white;
+    background-color: #F89900;
+    outline: none;
+    border: none;
+}
+
+button:active:enabled {
+    outline: none;
+    border: none;
+}
+
+#endScreen text{
+    fill: #dedede;
 }
