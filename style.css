@@ -9,9 +9,34 @@ body{
 
 text{
     font-size: 60px;
+    cursor: pointer;
 }
 
 rect{
-    width: 150;
-    height: 150;
+    cursor: pointer;
+}
+
+h1{
+    text-align: center;
+
+}
+
+#gameScreen{
+    padding-top: 4%;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    top: 10%;
+}
+
+#scramble-btn{
+    display: flex;
+    justify-content: center;
+    color: red;
+}
+
+button{
+    height: 50px;
+    width: 10%;
+    font-size: 2em;
 }

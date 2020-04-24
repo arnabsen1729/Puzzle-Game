@@ -9,6 +9,12 @@ let grid = [
     [6, 7, 8]
 ];
 
+const result = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8]
+];
+
 function captureTiles() {
     tiles = [];
     tilesText = [];
@@ -20,7 +26,6 @@ function captureTiles() {
         tiles.push(tileCapture);
         tilesText.push(textCapture);
     }
-
 }
 
 function moveDown(index) {
@@ -49,6 +54,7 @@ function moveDown(index) {
 
         }
     }
+    // gameOver();
 }
 
 function moveUp(index) {
@@ -74,6 +80,7 @@ function moveUp(index) {
 
         }
     }
+    // gameOver();
 
 }
 
@@ -100,6 +107,7 @@ function moveLeft(index) {
 
         }
     }
+    // gameOver();
 }
 
 function moveRight(index) {
@@ -124,6 +132,7 @@ function moveRight(index) {
 
         }
     }
+    // gameOver();
 }
 
 
@@ -190,21 +199,106 @@ function detectKeyPress() {
             case 37:
                 // alert('Left key pressed');
                 determineMove('W');
+                gameOver();
                 break;
             case 38:
                 // alert('Up key pressed');
                 determineMove('N');
+                gameOver();
                 break;
             case 39:
                 // alert('Right key pressed');
                 determineMove('E');
+                gameOver();
                 break;
             case 40:
                 // alert('Down key pressed');
                 determineMove('S');
+                gameOver();
                 break;
         }
     };
+    // gameOver();
 }
 
-detectKeyPress();
+function clickMove(index) {
+    for (var row = 0; row <= 2; row++) {
+        for (var col = 0; col <= 2; col++) {
+            if (grid[row][col] == index) {
+                if (row != 2 && grid[row + 1][col] == 8) {
+                    determineMove('S');
+                    return;
+                } else if (row != 0 && grid[row - 1][col] == 8) {
+                    determineMove('N');
+                    return;
+                } else if (col != 0 && grid[row][col - 1] == 8) {
+                    determineMove('W');
+                    return;
+                } else if (col != 2 && grid[row][col + 1] == 8) {
+                    determineMove('E');
+                    return;
+                }
+            }
+        }
+    }
+}
+
+function detectClicks() {
+    captureTiles();
+    for (var i = 0; i <= 7; i++) {
+        tiles[i].addEventListener("click", (event) => {
+            const index = parseInt(event.target.id[5]);
+            clickMove(index);
+            gameOver();
+        });
+    }
+    for (var i = 0; i <= 7; i++) {
+        tilesText[i].addEventListener("click", (event) => {
+            const index = parseInt(event.target.id[5]);
+            clickMove(index);
+            gameOver();
+        });
+    }
+    // gameOver();
+}
+
+function stopDetection() {
+    document.onkeydown = function () { };
+}
+
+const SCRAMBLE_CNT = 100;
+
+function scrambleTiles() {
+
+    for (var i = 0; i < SCRAMBLE_CNT; i++) {
+        var rnd = Math.floor(Math.random() * 4);
+        if (rnd == 0) determineMove('N');
+        else if (rnd == 1) determineMove('S');
+        else if (rnd == 2) determineMove('W');
+        else if (rnd == 3) determineMove('E');
+    }
+}
+
+function gameOver() {
+    var count = 0;
+    for (var row = 0; row <= 2; row++) {
+        for (var col = 0; col <= 2; col++) {
+            if (grid[row][col] == result[row][col]) count++;
+        }
+    }
+    console.log(count);
+    if (count >= 8) {
+        alert("CONGRATS!!");
+        stopDetection();
+    }
+}
+
+function gameLoop() {
+    scrambleTiles();
+    detectKeyPress();
+    detectClicks();
+}
+
+
+var scramble = document.getElementById("scramble-btn");
+scramble.addEventListener('click', gameLoop);
